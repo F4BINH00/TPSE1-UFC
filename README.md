@@ -84,7 +84,13 @@ Cada diretório contém:
 * Documentação específica da prática.
 
 ---
+## 🎮 Projeto Final
 
+O projeto final da disciplina foi desenvolvido em um repositório separado.
+
+➡️ https://github.com/F4BINH00/BBB-Jokenpo
+
+---
 ## 📚 Objetivos de Aprendizagem
 
 Ao longo das práticas são explorados conceitos como:
