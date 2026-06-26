@@ -1,25 +1,26 @@
-# 💻 Prática 05 – Comunicação Serial (UART)
+# 💻 Prática 05 – Sistema com UART
 
 ## Objetivo
 
-Implementar uma interface serial utilizando UART para controlar periféricos da BeagleBone Black através de comandos enviados pelo computador.
+Desenvolver um sistema de comunicação serial utilizando a **UART0** da BeagleBone Black, permitindo a interação com o usuário por meio de um terminal serial para controlar periféricos e visualizar informações do sistema.
 
 ---
 
 ## Hardware Utilizado
 
-* BeagleBone Black
-* Cabo USB Serial
-* Terminal Minicom
+* BeagleBone Black (AM335x)
+* LEDs
+* Push Buttons
+* Computador com terminal serial (Minicom)
 
 ---
 
 ## Funcionalidades
 
 * Configuração da UART0.
-* Comunicação serial.
-* Menu interativo.
-* Controle de LEDs por comandos.
+* Comunicação serial entre a BeagleBone Black e o computador.
+* Implementação de um menu interativo no terminal.
+* Controle de GPIOs por meio de comandos enviados via UART.
 * Recepção e transmissão de caracteres.
 
 ---
@@ -27,13 +28,29 @@ Implementar uma interface serial utilizando UART para controlar periféricos da 
 ## Estrutura dos Arquivos
 
 ```text
-main.c
-uart.c
-uart.h
-start.s
-linker.ld
-Makefile
+Pratica05/
+├── bin/
+│   └── spl.boot
+├── inc/
+│   ├── bbb_regs.h
+│   ├── hw_types.h
+│   └── soc_AM335x.h
+├── obj/
+├── src/
+│   ├── main.c
+│   └── start.s
+└── Makefile
 ```
+
+### Descrição dos Diretórios
+
+| Diretório/Arquivo | Descrição                                                                                                                               |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/`            | Contém o código-fonte da aplicação, incluindo a lógica principal e o código de inicialização do processador.                            |
+| `inc/`            | Arquivos de cabeçalho (`.h`) com definições dos registradores, constantes, tipos de dados e endereços de memória específicos do AM335x. |
+| `obj/`            | Diretório onde são gerados os arquivos objeto (`.o`) durante a compilação.                                                              |
+| `bin/`            | Contém o arquivo final (`spl.boot`) utilizado para carregar a aplicação na BeagleBone Black.                                            |
+| `Makefile`        | Automatiza o processo de compilação, montagem, ligação e geração do arquivo correspondente.                                             |
 
 ---
 
@@ -47,18 +64,20 @@ make
 
 ## Como Executar
 
-1. Compile o projeto.
-2. Carregue na placa.
-3. Abra o Minicom.
-4. Utilize o menu apresentado para controlar os LEDs.
+1. Compile o projeto utilizando o `make`.
+2. Carregue a aplicação na BeagleBone Black por meio do U-Boot.
+3. Abra um terminal serial (como o Minicom).
+4. Interaja com o menu exibido para enviar comandos e controlar os periféricos.
 
 ---
 
 ## Conceitos Abordados
 
 * UART
-* Baud Rate
 * Comunicação Serial
-* Buffer de recepção
-* Interface Homem-Máquina
+* GPIO
+* Manipulação de registradores
+* Programação Bare-Metal
+* ARM Cortex-A8
+* Interface Homem-Máquina (HMI)
 * Entrada e saída serial
